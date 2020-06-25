@@ -14,7 +14,8 @@ mongoose.connect(process.env.DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
-}).catch(err => console.error(`Error: ${err}`));
+}).then(console.log("DB CONNECTED"))
+  .catch(err => console.error(`Error: ${err}`));
 
 // Implement Body Parser
 const bodyParser = require('body-parser');
@@ -71,5 +72,7 @@ const routes = require('./routes.js');
 app.use('/', routes);
 
 // Start our server
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on port ${port}`));
+// const port = process.env.PORT || 3000;
+// app.listen(port, () => console.log(`Listening on port ${port}`));
+
+app.listen(process.env.PORT || 3000, port => console.log(`Listening on port ${port}`));
